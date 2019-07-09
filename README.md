@@ -3,6 +3,13 @@ Welcome
 
 First of all, this is nothing but an ever changing playground for me to test things Docker/Deployment related. You're welcomed to see as my repository evolves from what is a blank slate to a fully functional deployment
 
+
+Quickstart
+===
+
+Since you're here, just go ahead and `docker-compose up --build`.
+
+
 # Docker Compose version: 3.3
 
 .env
