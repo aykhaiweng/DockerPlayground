@@ -1,0 +1,30 @@
+# All temporary files
+*.tmp
+*.temp
+tmp/
+
+# Database Files
+.db/
+
+# Log Files
+logs/
+log
+*.log
+
+# Python Compiled
+*.pyc
+*.pyo
+*.db
+*.pot
+*.doctree
+*.swp
+.doctrees
+*.egg-info*
+dist/
+__pycache__/
+
+# Django Files
+local_settings.py
+
+# Environment Variables
+*.env

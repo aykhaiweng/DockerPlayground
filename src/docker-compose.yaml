@@ -1,0 +1,44 @@
+version: '3.3'
+
+volumes:
+    code:
+    public:
+    sockets:
+
+services:
+  dockerapp1:
+    build: ./dockerapp1
+    restart: always
+    env_file: .env
+    volumes:
+      - .:/opt/webapp/
+      - public:/var/www/public/
+      - sockets:/run/sockets/
+    depends_on:
+      - db
+    links:
+      - db
+    command: bash -c "python3 ./dockerapp1/manage.py collectstatic --noinput && python3 ./dockerapp1/manage.py migrate && gunicorn --chdir dockerapp1 -b unix:/run/sockets/dockerapp1.sock dockerapp1.wsgi --workers 3 --reload"
+
+  db:
+    image: postgres:12-alpine
+    env_file: .env
+    volumes:
+      - ./.db:/var/lib/postgresql/data/
+    ports:
+      - ${POSTGRES_LISTEN_PORT}:5432
+
+  nginx:
+    build: ./nginx
+    restart: always
+    env_file: .env
+    volumes:
+      - public:/var/www/public/
+      - sockets:/run/sockets/
+    ports:
+      - ${NGINX_LISTEN_PORT}:8000
+    links:
+      - dockerapp1
+    depends_on:
+      - dockerapp1
+
