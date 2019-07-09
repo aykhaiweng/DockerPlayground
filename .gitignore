@@ -28,3 +28,6 @@ local_settings.py
 
 # Environment Variables
 *.env
+
+# Pyenv
+.python-version
