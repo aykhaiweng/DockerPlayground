@@ -10,7 +10,12 @@ Quickstart
 Since you're here, just go ahead and `docker-compose up --build`.
 
 
-# Docker Compose version: 3.3
+Technologies
+===
+* Docker (Compose version: 3.3)
+* Python 3.7, Django 2.3.3, Gunicorn 19.9
+* Nginx
+* PostgreSQL
 
 .env
 ===
