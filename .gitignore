@@ -5,6 +5,7 @@ tmp/
 
 # Database Files
 .db/
+db.sqlite3
 
 # Log Files
 logs/
