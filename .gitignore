@@ -32,3 +32,6 @@ local_settings.py
 
 # Pyenv
 .python-version
+
+# Docker files
+volumes/
