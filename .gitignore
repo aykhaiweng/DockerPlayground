@@ -2,9 +2,7 @@
 init-letsencrypt.sh
 docker-compose.yaml
 .env
-!base/init-letsencrypt.sh
-!base/docker-compose.yaml
-!base/.env
+!base/*
 volumes/
 
 # All temporary files
