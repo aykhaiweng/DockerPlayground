@@ -1,3 +1,9 @@
+# Docker files
+./init-letsencrypt.sh
+./docker-compose.yaml
+./.env
+volumes/
+
 # All temporary files
 *.tmp
 *.temp
@@ -33,5 +39,3 @@ local_settings.py
 # Pyenv
 .python-version
 
-# Docker files
-volumes/
