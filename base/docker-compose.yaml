@@ -7,7 +7,7 @@ volumes:
 services:
   dockerapp1:
     build: ./src/dockerapp1
-    env_file: dev.env
+    env_file: .env
     restart: always
     volumes:
       - ./src/dockerapp1/:/opt/webapp/
@@ -21,7 +21,7 @@ services:
 
   db:
     image: postgres:12
-    env_file: dev.env
+    env_file: .env
     volumes:
       - ./volumes/database/:/var/lib/postgresql/data/
     ports:
@@ -29,7 +29,7 @@ services:
 
   nginx:
     build: ./services/nginx
-    env_file: dev.env
+    env_file: .env
     restart: always
     volumes:
       - ./volumes/nginx/conf.d/:/etc/nginx/conf.d/
@@ -46,7 +46,7 @@ services:
 
   certbot:
     image: certbot/certbot
-    env_file: dev.env
+    env_file: .env
     volumes:
       - ./volumes/nginx/conf.d/:/etc/nginx/conf.d/
       - ./volumes/certs:/etc/letsencrypt
