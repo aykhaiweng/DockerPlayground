@@ -8,7 +8,6 @@ services:
   dockerapp1:
     build: ./src/dockerapp1
     restart: always
-    env_file: .env
     volumes:
       - ./src/dockerapp1/:/opt/webapp/
       - public:/var/www/public/
@@ -21,7 +20,6 @@ services:
 
   db:
     image: postgres:12
-    env_file: .env
     volumes:
       - ./volumes/database/:/var/lib/postgresql/data/
     ports:
@@ -30,7 +28,6 @@ services:
   nginx:
     build: ./services/nginx
     restart: always
-    env_file: .env
     volumes:
       - ./volumes/nginx/conf.d/:/etc/nginx/conf.d/
       - public:/var/www/public/
