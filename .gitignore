@@ -1,7 +1,15 @@
+# Docker files
+!/conf
+init-letsencrypt.sh
+docker-compose.yaml
+.env
+volumes/
+
 # All temporary files
 *.tmp
 *.temp
 tmp/
+local/
 
 # Database Files
 .db/
@@ -27,11 +35,6 @@ __pycache__/
 # Django Files
 local_settings.py
 
-# Environment Variables
-*.env
-
 # Pyenv
 .python-version
 
-# Docker files
-volumes/
