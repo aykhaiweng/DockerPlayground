@@ -6,7 +6,10 @@ First of all, this is nothing but an ever changing playground for me to test thi
 
 Quickstart
 ===
-Read that `init.sh` thing.
+```bash
+$ source init.sh
+$ docker-compose up --build
+```
 
 Technologies
 ===
