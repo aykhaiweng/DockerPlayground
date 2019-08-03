@@ -1,7 +1,4 @@
 # Docker files
-docker-compose.yaml
-.env
-!base/*
 volumes/
 
 # All temporary files
