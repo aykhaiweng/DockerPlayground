@@ -6,14 +6,9 @@ First of all, this is nothing but an ever changing playground for me to test thi
 
 Quickstart
 ===
-
-Since you're here, just go ahead and `docker-compose up --build`.
-
-`nginx` will be started with it's barebones configuration that would not be serving your site. A new volume should be created at `/volumes/nginx/conf.d/` which is mounted to `/etc/nginx/conf.d/` in the container. You may start adding files into here, like the default `services/nginx/site.conf` and run `docker-compose nginx restart` whenever a change has been made.
-
-TLDR;
-```
-cp services/conf/site.conf volumes/nginx/conf.d/site.conf
+```bash
+$ source init.sh
+$ docker-compose up --build
 ```
 
 Technologies
