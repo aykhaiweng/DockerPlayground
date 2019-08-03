@@ -8,7 +8,6 @@ services:
   dockerapp1:
     build: ./src/dockerapp1
     env_file: .env
-    restart: always
     volumes:
       - ./src/dockerapp1/:/opt/webapp/
       - public:/var/www/public/
@@ -30,7 +29,7 @@ services:
   nginx:
     build: ./services/nginx
     env_file: .env
-    restart: always
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
     volumes:
       - ./volumes/nginx/conf.d/:/etc/nginx/conf.d/
       - ./volumes/certs:/etc/letsencrypt
@@ -47,6 +46,7 @@ services:
   certbot:
     image: certbot/certbot
     env_file: .env
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
     volumes:
       - ./volumes/nginx/conf.d/:/etc/nginx/conf.d/
       - ./volumes/certs:/etc/letsencrypt

@@ -1,5 +1,4 @@
 # Docker files
-init-letsencrypt.sh
 docker-compose.yaml
 .env
 !base/*
