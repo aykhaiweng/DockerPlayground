@@ -28,15 +28,16 @@ services:
 
   nginx:
     build: ./services/nginx
-    env_file: .env
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
     volumes:
       - ./volumes/nginx/conf.d/:/etc/nginx/conf.d/
-      - ./volumes/certs:/etc/letsencrypt
+      - ./volumes/certbot/conf:/etc/letsencrypt
       - ./volumes/certbot/www:/var/www/certbot
       - public:/var/www/public/
       - sockets:/run/sockets/
     ports:
       - ${NGINX_LISTEN_PORT}:80
+      - 443:443
     links:
       - dockerapp1
     depends_on:
@@ -48,5 +49,5 @@ services:
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
     volumes:
       - ./volumes/nginx/conf.d/:/etc/nginx/conf.d/
-      - ./volumes/certs:/etc/letsencrypt
+      - ./volumes/certbot/conf:/etc/letsencrypt
       - ./volumes/certbot/www:/var/www/certbot

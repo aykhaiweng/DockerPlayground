@@ -122,3 +122,13 @@ TEMPLATES = [
 
 STATIC_URL = '/static/'
 STATIC_ROOT = '/var/www/public/static/'
+
+
+############################################################
+# Local Settings Override
+############################################################
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass

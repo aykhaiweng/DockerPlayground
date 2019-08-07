@@ -5,19 +5,27 @@ if ! [ -x "$(command -v docker-compose)" ]; then
   exit 1
 fi
 
-source .env
-
-domains=$LETSENCRYPT_DOMAINS
+domains=(dev.khai.io)
 rsa_key_size=4096
-data_path="./volumes/certs"
-email=$LETSENCRYPT_EMAIL # Adding a valid address is strongly recommended
-staging=1 # Set to 1 if you're testing your setup to avoid hitting request limits
+data_path="./volumes/certbot"
+email="khai@ouchfree.co" # Adding a valid address is strongly recommended
+staging=0 # Set to 1 if you're testing your setup to avoid hitting request limits
 
 if [ -d "$data_path" ]; then
   read -p "Existing data found for $domains. Continue and replace existing certificate? (y/N) " decision
   if [ "$decision" != "Y" ] && [ "$decision" != "y" ]; then
     exit
   fi
+fi
+
+
+# Copy over the site.conf if it hasn't been found yet
+if [ ! -e "./volumes/nginx/conf.d/site.conf" ]; then
+  echo "### Copying over site.conf for nginx ..."
+  mkdir -p "./volumes/nginx/conf.d/"
+  cp "services/nginx/site.conf" "./volumes/nginx/conf.d/site.conf"
+  read -p "Have you already changed your site.conf to reflect your own domain? If yes, hit enter." decision
+  echo
 fi
 
 
