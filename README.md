@@ -1,12 +1,13 @@
 Welcome
 ===
-
 First of all, this is nothing but an ever changing playground for me to test things Docker/Deployment related. You're welcomed to see as my repository evolves from what is a blank slate to a fully functional deployment
 
 
 Quickstart
 ===
 ```bash
+$ chmod +x init_letsencrypt.sh
+$ ./init_letsencrypt.sh
 $ docker-compose up --build
 ```
 
@@ -16,24 +17,32 @@ Technologies
 * Python 3.7, Django 2.3.3, Gunicorn 19.9
 * Nginx
 * PostgreSQL
+* Certbot
 
 .env
 ===
 ```
-# ATTENTION -------------------------------------------------
+# ATTENTION -----------------------------------------------------
 # These are the default ENVIRONMENT variables that
 # will be used during the default start up of the application
 
-# NGINX -----------------------------------------------------
-NGINX_LISTEN_PORT=8001
+# LETS_ENCRYPT --------------------------------------------------
+LETSENCRYPT_DOMAINS=(dev.khai.io)
+LETSENCRYPT_EMAIL=aykhaiweng@gmail.com
 
-# POSTGRES --------------------------------------------------
+
+# NGINX ---------------------------------------------------------
+NGINX_LISTEN_PORT=80
+
+
+# POSTGRES ------------------------------------------------------
 POSTGRES_LISTEN_PORT=54321
 POSTGRES_DB=ouchinsurance
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=postgres
 
-# APP SETTINGS ----------------------------------------------
+
+# APP SETTINGS --------------------------------------------------
 DATABASE_NAME=ouchinsurance
 DATABASE_USER=postgres
 DATABASE_PASSWORD=postgres
@@ -45,7 +54,7 @@ DATABASE_ATOMIC_REQUESTS=1
 
 ACME Challenge for LetsEncrypt
 =====
-For the ACME challenge for LetsEncrypt, this should be done on a remote server only. Ensure that the external port that is exposed for listening with Nginx is set to 80. Then `sudo ./init-letsencrypt.sh` and look at it go.
+For the ACME challenge for LetsEncrypt, this should be done on a remote server only. Ensure that the external port that is exposed for listening with Nginx is set to 80. Then `sudo ./init_letsencrypt.sh` and look at it go.
 
 
 Personalization
