@@ -1,3 +1,4 @@
 [submodule "src/aypytools"]
 	path = src/aypytools
 	url = git@github.com:aykhaiweng/aypytools.git
+	branch = master
